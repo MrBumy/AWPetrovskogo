@@ -21,11 +21,11 @@
         </Grid.ColumnDefinitions>
 
         <Border Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" 
-                Background="#1A3A5C">
+                Background="#154fa3">
         </Border>
 
         <StackPanel Grid.Row="1" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20">
-            <TextBlock Text="ПАО «Завод им. Г. И. Петровского»" FontSize="16" FontWeight="Bold" Foreground="#E0E6ED" TextWrapping="Wrap" TextAlignment="Center"/>
+            <Image Source="/Data/Images/logo.jpg"/>
 
             <TextBlock Text="АРМ сотрудника" FontSize="28" FontWeight="Bold" Foreground="White" Margin="0,20,0,10" TextAlignment="Center"/>
 

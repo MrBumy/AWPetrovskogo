@@ -28,7 +28,7 @@ namespace AWPetrovskogo.Pages
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            var user = ConnectObject.GetConnect().Users.AsNoTracking().FirstOrDefault(u => u.Login == TBLogin.Text);
+            var user = ConnectObject.GetConnect().Users.FirstOrDefault(u => u.Login == TBLogin.Text);
 
             if (user == null)
             {
@@ -67,7 +67,6 @@ namespace AWPetrovskogo.Pages
                 if (user.IsBlocked == true)
                 {
                     MessageBox.Show("Вы заблокированы! Обратитесь к администратору.", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
-                    btnLogin.IsEnabled = false;
                     return;
                 }
                 if (user.Login == TBLogin.Text && user.Password != PBPassword.Password)
@@ -75,13 +74,13 @@ namespace AWPetrovskogo.Pages
                     MessageBox.Show("Неправильно введен пароль!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
                     user.AmountOfMistackes++;
                     ConnectObject.GetConnect().SaveChanges();
+                    MessageBox.Show($"Осталось {3 - user.AmountOfMistackes} попыток входа", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Information);
                     if (user.AmountOfMistackes >= 3)
                     {
                         user.IsBlocked = true;
                         user.AmountOfMistackes = 0;
                         ConnectObject.GetConnect().SaveChanges();
                     }
-                    MessageBox.Show($"Осталось {3 - user.AmountOfMistackes} попыток входа", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Information);
                     return;
                 }
                 else

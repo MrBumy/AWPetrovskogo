@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="AWPetrovskogo" Height="450" Width="800">
     <Grid>
-        <Frame x:Name="MainFrame" Source="Pages/Authorization.xaml"/>
+        <Frame x:Name="MainFrame" Source="Pages/Authorization.xaml" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>
