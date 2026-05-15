@@ -62,7 +62,7 @@
                     <PasswordBox x:Name="PBPassword" Height="45" FontSize="14" BorderThickness="1" BorderBrush="#DDDDDD" Padding="15,0" Background="#F9F9F9" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
                 </StackPanel>
 
-                <Button x:Name="btnLogin" Grid.Row="4" Content="Войти" Height="40" Margin="0,25,0,0" FontSize="14"/>
+                <Button x:Name="btnLogin" Grid.Row="4" Content="Войти" Height="40" Margin="0,25,0,0" FontSize="14" Click="btnLogin_Click"/>
 
             </Grid>
         </Border>

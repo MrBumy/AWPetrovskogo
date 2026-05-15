@@ -25,6 +25,7 @@ namespace AWPetrovskogo
         {
             InitializeComponent();
             FrameObject.frameMain = MainFrame;
+            ConnectObject.connect = new AWPetrovskogoEntities();
         }
     }
 }

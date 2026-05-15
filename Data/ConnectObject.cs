@@ -8,5 +8,14 @@ namespace AWPetrovskogo.Data
 {
     internal class ConnectObject
     {
+        public static AWPetrovskogoEntities connect;
+        public static AWPetrovskogoEntities GetConnect()
+        {
+            if (connect == null)
+            {
+                connect = new AWPetrovskogoEntities();
+            }
+            return connect;
+        }
     }
 }
