@@ -12,19 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using AWPetrovskogo.Data;
 
-namespace AWPetrovskogo
+namespace AWPetrovskogo.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для AdministratorPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AdministratorPage : Page
     {
-        public MainWindow()
+        public AdministratorPage()
         {
             InitializeComponent();
-            FrameObject.frameMain = MainFrame;
         }
     }
 }

@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AWPetrovskogo"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="AWPetrovskogo" Height="450" Width="800">
     <Grid>
-        
+        <Frame x:Name="MainFrame" Source="Pages/Authorization.xaml"/>
     </Grid>
 </Window>
