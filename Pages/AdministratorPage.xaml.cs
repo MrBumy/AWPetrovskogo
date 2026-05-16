@@ -133,6 +133,18 @@ namespace AWPetrovskogo.Pages
                 return;
             }
 
+            if (string.IsNullOrEmpty(TBEmail.Text))
+            {
+                MessageBox.Show("Введите почту!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            if (CBRole.SelectedValue == null)
+            {
+                MessageBox.Show("Выберите роль!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             var existingUser = ConnectObject.GetConnect().Users.Count(u => u.Login == TBLogin.Text);
             if (existingUser >= 1)
             {
@@ -157,7 +169,7 @@ namespace AWPetrovskogo.Pages
                     LastName = TBLastName.Text,
                     FirstName = TBFirstName.Text,
                     Patronymic = string.IsNullOrEmpty(TBPatronymic.Text) ? null : TBPatronymic.Text,
-                    EMail = string.IsNullOrEmpty(TBEmail.Text) ? null : TBEmail.Text,
+                    EMail = TBEmail.Text,
                     Login = TBLogin.Text,
                     Password = PBPassword.Password,
                     RoleID = CBRole.SelectedValue != null ? (int)CBRole.SelectedValue : 2,

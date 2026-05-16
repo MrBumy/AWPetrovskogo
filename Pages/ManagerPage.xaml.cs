@@ -67,9 +67,12 @@ namespace AWPetrovskogo.Pages
 
         private void LoadApplicationsWithFilter()
         {
-            if (CBStatusFilter.SelectedItem == null) return;
+            if (CBStatusFilter.SelectedItem == null)
+            {
+                return;
+            }
 
-            string filter = (CBStatusFilter.SelectedItem as ComboBoxItem)?.Content.ToString();
+            string filter = (CBStatusFilter.SelectedItem as ComboBoxItem).Content.ToString();
 
             var query = ConnectObject.GetConnect().Applications
                 .Join(ConnectObject.GetConnect().Companies, a => a.CompanyID, c => c.CompanyID, (a, c) => new { a, c })
@@ -141,25 +144,13 @@ namespace AWPetrovskogo.Pages
 
             selectedApplicationId = application.ApplicationID;
 
-            var app = ConnectObject.GetConnect().Applications
-                .Join(ConnectObject.GetConnect().Companies, a => a.CompanyID, c => c.CompanyID, (a, c) => new { a, c })
-                .Join(ConnectObject.GetConnect().Articles, ac => ac.a.ArticleID, art => art.ArticleID, (ac, art) => new { ac.a, ac.c, art })
-                .Join(ConnectObject.GetConnect().Statuses, aca => aca.a.StatusID, s => s.StatusID, (aca, s) => new { aca.a, aca.c, aca.art, s })
-                .FirstOrDefault(x => x.a.ApplicationID == selectedApplicationId);
+            string message = $"Заявка #{application.ApplicationID}\n\n" +
+                $"Наименование: {application.TransferName}\n" +
+                $"Компания: {application.CompanyName}\n" +
+                $"Сумма: {application.SumInRubles:N2} руб.\n" +
+                $"Статус: {application.StatusName}";
 
-            if (app != null)
-            {
-                string message = $"Заявка #{app.a.ApplicationID}\n\n" +
-                    $"Наименование: {app.a.TransferName}\n" +
-                    $"Компания: {app.c.CompanyName}\n" +
-                    $"Статья: {app.art.ArticleName}\n" +
-                    $"Сумма: {app.a.SumInRubles:N2} руб.\n" +
-                    $"Статус: {app.s.StatusName}\n" +
-                    $"Основание: {app.a.Reason}\n" +
-                    $"Дата: {app.a.CreatedDate:dd.MM.yyyy HH:mm}";
-
-                MessageBox.Show(message, "Детали заявки", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
+            MessageBox.Show(message, "Детали заявки", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void ApproveButton_Click(object sender, RoutedEventArgs e)

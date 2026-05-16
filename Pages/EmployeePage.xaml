@@ -155,7 +155,7 @@
                                 <TextBlock Text="Формат отчета:" Margin="0,5,0,2"/>
                                 <ComboBox x:Name="CBReportFormat" Height="35" DisplayMemberPath="FormatName" SelectedValuePath="ReportFormatID" VerticalContentAlignment="Center"/>
 
-                                <CheckBox x:Name="CHKCancelledApplications"  Content="Учитывать аннулированные заявки" Margin="0,15,0,0"/>
+                                <CheckBox x:Name="CHKCancelledApplications"  Content="Учитывать отклоненные заявки" Margin="0,15,0,0"/>
                             </StackPanel>
                         </Border>
 

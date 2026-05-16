@@ -256,8 +256,7 @@ namespace AWPetrovskogo.Pages
             decimal remaining = Convert.ToDecimal(TBRemaining.Text);
             if (sum > remaining)
             {
-                MessageBox.Show($"Сумма превышает доступный остаток! Доступно: {remaining:N2} руб.",
-                    "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Сумма превышает доступный остаток! Доступно: {remaining} руб.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -296,6 +295,20 @@ namespace AWPetrovskogo.Pages
         {
             try
             {
+                if (CBReportType.SelectedValue == null)
+                {
+                    MessageBox.Show("Выберите тип отчета!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                if (CBReportFormat.SelectedValue == null)
+                {
+                    MessageBox.Show("Выберите формат отчета!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                bool includeCancelled = CHKCancelledApplications.IsChecked ?? false;
+
                 string reportsFolder = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Reports");
                 if (!Directory.Exists(reportsFolder)) Directory.CreateDirectory(reportsFolder);
 
@@ -304,14 +317,20 @@ namespace AWPetrovskogo.Pages
 
                 using (var writer = new StreamWriter(filePath, false, Encoding.UTF8))
                 {
-                    if ((int)CBReportType.SelectedValue == 1)
+                    if ((int)CBReportType.SelectedValue == 1) 
                     {
                         writer.WriteLine("ID;Наименование платежа;Компания;Статья;Сумма;Статус;Дата");
 
-                        var apps = ConnectObject.GetConnect().Applications
+                        var appsQuery = ConnectObject.GetConnect().Applications
                             .Where(a => a.CreatedDate >= DPFromDate.SelectedDate.Value &&
-                                       a.CreatedDate <= DPToDate.SelectedDate.Value)
-                            .ToList();
+                                       a.CreatedDate <= DPToDate.SelectedDate.Value);
+
+                        if (!includeCancelled)
+                        {
+                            appsQuery = appsQuery.Where(a => a.StatusID != 3);
+                        }
+
+                        var apps = appsQuery.ToList();
 
                         foreach (var app in apps)
                         {
@@ -322,7 +341,7 @@ namespace AWPetrovskogo.Pages
                             writer.WriteLine($"{app.ApplicationID};{app.TransferName};{company?.CompanyName};{article?.ArticleName};{app.SumInRubles};{status?.StatusName};{app.CreatedDate:dd.MM.yyyy}");
                         }
                     }
-                    else
+                    else 
                     {
                         writer.WriteLine("Год;Месяц;Статья;Лимит;Расход;Остаток");
 
@@ -331,11 +350,18 @@ namespace AWPetrovskogo.Pages
                         foreach (var budget in budgets)
                         {
                             var article = ConnectObject.GetConnect().Articles.Find(budget.ArticleID);
-                            decimal spent = ConnectObject.GetConnect().Applications
+
+                            var spentQuery = ConnectObject.GetConnect().Applications
                                 .Where(a => a.ArticleID == budget.ArticleID &&
                                            a.CreatedDate.Year == budget.Year &&
-                                           a.CreatedDate.Month == budget.Month)
-                                .Sum(a => (decimal?)a.SumInRubles) ?? 0;
+                                           a.CreatedDate.Month == budget.Month);
+
+                            if (!includeCancelled)
+                            {
+                                spentQuery = spentQuery.Where(a => a.StatusID != 3);
+                            }
+
+                            decimal spent = spentQuery.Sum(a => (decimal?)a.SumInRubles) ?? 0;
 
                             writer.WriteLine($"{budget.Year};{budget.Month};{article?.ArticleName};{budget.Limit};{spent};{budget.Limit - spent}");
                         }

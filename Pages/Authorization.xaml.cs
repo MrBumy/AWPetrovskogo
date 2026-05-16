@@ -30,20 +30,20 @@ namespace AWPetrovskogo.Pages
         {
             if (string.IsNullOrEmpty(TBLogin.Text) && string.IsNullOrEmpty(PBPassword.Password))
             {
-                MessageBox.Show("Введите логин и пароль!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Введите логин и пароль!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             if (string.IsNullOrEmpty(TBLogin.Text))
             {
-                MessageBox.Show("Введите логин!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Введите логин!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 TBLogin.Focus();
                 return;
             }
 
             if (string.IsNullOrEmpty(PBPassword.Password))
             {
-                MessageBox.Show("Введите пароль!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Введите пароль!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 PBPassword.Focus();
                 return;
             }
@@ -52,13 +52,13 @@ namespace AWPetrovskogo.Pages
 
             if (user == null)
             {
-                MessageBox.Show("Пользователя с таким логином не существует!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Пользователя с таким логином не существует!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             if (user.IsBlocked == true)
             {
-                MessageBox.Show("Вы заблокированы! Обратитесь к администратору.", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Вы заблокированы! Обратитесь к администратору.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return ;
             }
 
@@ -66,10 +66,10 @@ namespace AWPetrovskogo.Pages
             {
                 if (user.Password != PBPassword.Password)
                 {
-                    MessageBox.Show("Неправильно введен пароль!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Неправильно введен пароль!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     user.AmountOfMistakes++;
                     ConnectObject.GetConnect().SaveChanges();
-                    MessageBox.Show($"Осталось {3 - user.AmountOfMistakes} попыток входа", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show($"Осталось {3 - user.AmountOfMistakes} попыток входа", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Information);
                     if (user.AmountOfMistakes >= 3)
                     {
                         user.IsBlocked = true;
@@ -80,7 +80,7 @@ namespace AWPetrovskogo.Pages
                 }
                 else
                 {
-                    MessageBox.Show("Вы успешно авторизовались!", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Вы успешно авторизовались!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
                     user.AmountOfMistakes = 0;
                     ConnectObject.GetConnect().SaveChanges();
 
