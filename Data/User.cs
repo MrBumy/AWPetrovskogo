@@ -15,11 +15,14 @@ namespace AWPetrovskogo.Data
     public partial class User
     {
         public int UserID { get; set; }
-        public string Name { get; set; }
+        public string LastName { get; set; }
+        public string FirstName { get; set; }
+        public string Patronymic { get; set; }
+        public string EMail { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
         public Nullable<int> RoleID { get; set; }
-        public int AmountOfMistackes { get; set; }
+        public int AmountOfMistakes { get; set; }
         public bool IsBlocked { get; set; }
     
         public virtual Role Role { get; set; }

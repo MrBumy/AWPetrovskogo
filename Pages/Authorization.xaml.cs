@@ -72,13 +72,13 @@ namespace AWPetrovskogo.Pages
                 if (user.Login == TBLogin.Text && user.Password != PBPassword.Password)
                 {
                     MessageBox.Show("Неправильно введен пароль!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
-                    user.AmountOfMistackes++;
+                    user.AmountOfMistakes++;
                     ConnectObject.GetConnect().SaveChanges();
-                    MessageBox.Show($"Осталось {3 - user.AmountOfMistackes} попыток входа", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Information);
-                    if (user.AmountOfMistackes >= 3)
+                    MessageBox.Show($"Осталось {3 - user.AmountOfMistakes} попыток входа", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    if (user.AmountOfMistakes >= 3)
                     {
                         user.IsBlocked = true;
-                        user.AmountOfMistackes = 0;
+                        user.AmountOfMistakes = 0;
                         ConnectObject.GetConnect().SaveChanges();
                     }
                     return;
