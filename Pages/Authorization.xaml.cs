@@ -92,6 +92,12 @@ namespace AWPetrovskogo.Pages
                         case 1:
                             FrameObject.frameMain.Navigate(new AdministratorPage());
                             break;
+                        case 2:
+                            FrameObject.frameMain.Navigate(new EmployeePage());
+                            break;
+                        case 3:
+                            FrameObject.frameMain.Navigate(new ManagerPage());
+                            break;
                     }
                 }
             }
