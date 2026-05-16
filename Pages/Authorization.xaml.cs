@@ -28,14 +28,6 @@ namespace AWPetrovskogo.Pages
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            var user = ConnectObject.GetConnect().Users.FirstOrDefault(u => u.Login == TBLogin.Text);
-
-            if (user == null)
-            {
-                MessageBox.Show("Пользователя с таким логином не существует!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
             if (string.IsNullOrEmpty(TBLogin.Text) && string.IsNullOrEmpty(PBPassword.Password))
             {
                 MessageBox.Show("Введите логин и пароль!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -56,6 +48,14 @@ namespace AWPetrovskogo.Pages
                 return;
             }
 
+            var user = ConnectObject.GetConnect().Users.FirstOrDefault(u => u.Login == TBLogin.Text);
+
+            if (user == null)
+            {
+                MessageBox.Show("Пользователя с таким логином не существует!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             if (user.IsBlocked == true)
             {
                 MessageBox.Show("Вы заблокированы! Обратитесь к администратору.", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -64,12 +64,7 @@ namespace AWPetrovskogo.Pages
 
             if (user.Login == TBLogin.Text)
             {
-                if (user.IsBlocked == true)
-                {
-                    MessageBox.Show("Вы заблокированы! Обратитесь к администратору.", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-                if (user.Login == TBLogin.Text && user.Password != PBPassword.Password)
+                if (user.Password != PBPassword.Password)
                 {
                     MessageBox.Show("Неправильно введен пароль!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
                     user.AmountOfMistakes++;
@@ -86,6 +81,8 @@ namespace AWPetrovskogo.Pages
                 else
                 {
                     MessageBox.Show("Вы успешно авторизовались!", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    user.AmountOfMistakes = 0;
+                    ConnectObject.GetConnect().SaveChanges();
 
                     switch (user.RoleID)
                     {

@@ -6,9 +6,144 @@
       xmlns:local="clr-namespace:AWPetrovskogo.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AdministratorPage">
+      Title="AdministratorPage" IsVisibleChanged="Page_IsVisibleChanged">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="#1A3A5C" Padding="10">
+            <TextBlock Text="Панель администратора" FontSize="18" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
+        </Border>
+        <Button x:Name="ExitButton" Height="40" Width="40" HorizontalAlignment="Right" Content="X" Background="Red" Click="ExitButton_Click"/>
+
+
+        <TabControl x:Name="MainTabControl" Grid.Row="1">
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock Text="Пользователи" FontSize="14"/>
+                </TabItem.Header>
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,5">
+                        <TextBox x:Name="TBSearch" Width="200" Height="30" VerticalContentAlignment="Center"/>
+                        <Button x:Name="SearchButton" Content="Поиск" Width="40" Height="30" Margin="5,0" Click="SearchButton_Click"/>
+                        <Button x:Name="RefreshButton" Content="Обновить" Width="60" Height="30" Click="RefreshButton_Click"/>
+                    </StackPanel>
+
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                        <DataGrid x:Name="DGridUsers" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single" SelectionChanged="DGridUsers_SelectionChanged" RowHeight="35" FontSize="11" HeadersVisibility="Column">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" Binding="{Binding UserID}" Width="40"/>
+                                <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" Width="100"/>
+                                <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" Width="80"/>
+                                <DataGridTextColumn Header="Почта" Binding="{Binding EMail}" Width="80"/>
+                                <DataGridTextColumn Header="Логин" Binding="{Binding Login}" Width="80"/>
+                                <DataGridTextColumn Header="Пароль" Binding="{Binding Password}" Width="80"/>
+                                <DataGridTextColumn Header="Роль" Binding="{Binding RoleID}" Width="50"/>
+                                <DataGridTextColumn Header="Заблокирован" Binding="{Binding IsBlocked}" Width="90"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock Text="Добавить пользователя" FontSize="14"/>
+                </TabItem.Header>
+
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="10">
+                        <TextBlock Text="Создание нового пользователя" FontSize="16" FontWeight="Bold" Foreground="#1A3A5C" HorizontalAlignment="Center" Margin="0,0,0,15"/>
+
+                        <TextBlock Text="Фамилия:" Margin="0,5,0,0"/>
+                        <TextBox x:Name="TBLastName" Height="35" Margin="0,0,0,10"/>
+
+                        <TextBlock Text="Имя:" Margin="0,5,0,0"/>
+                        <TextBox x:Name="TBFirstName" Height="35" Margin="0,0,0,10"/>
+
+                        <TextBlock Text="Отчество:" Margin="0,5,0,0"/>
+                        <TextBox x:Name="TBPatronymic" Height="35" Margin="0,0,0,10"/>
+
+                        <TextBlock Text="Email:" Margin="0,5,0,0"/>
+                        <TextBox x:Name="TBEmail" Height="35" Margin="0,0,0,10"/>
+
+                        <TextBlock Text="Логин:" Margin="0,5,0,0"/>
+                        <TextBox x:Name="TBLogin" Height="35" Margin="0,0,0,10"/>
+
+                        <TextBlock Text="Пароль:" Margin="0,5,0,0"/>
+                        <PasswordBox x:Name="PBPassword" Height="35" Margin="0,0,0,10"/>
+
+                        <TextBlock Text="Роль:" Margin="0,5,0,0"/>
+                        <ComboBox x:Name="CBRole" Height="35" Margin="0,0,0,15" DisplayMemberPath="RoleName" SelectedValuePath="RoleID"/>
+
+                        <Button x:Name="AddNewUserButton" Content="Добавить пользователя" Height="45" FontSize="14" Click="AddNewUserButton_Click"
+                                Margin="0,10,0,5"/>
+
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock Text="Редактировать пользователя" FontSize="14"/>
+                </TabItem.Header>
+
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Margin="0,0,0,10">
+                        <TextBlock Text="Выберите пользователя:" Margin="0,5,0,2"/>
+                        <ComboBox x:Name="CBUsersForEdit" Height="35" DisplayMemberPath="FullName" SelectedValuePath="UserID" SelectionChanged="CBUsersForEdit_SelectionChanged"/>
+                    </StackPanel>
+
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                        <StackPanel>
+                            <TextBlock Text="Фамилия:" Margin="0,5,0,0"/>
+                            <TextBox x:Name="TBEditLastName" Height="35" Margin="0,0,0,10"/>
+
+                            <TextBlock Text="Имя:" Margin="0,5,0,0"/>
+                            <TextBox x:Name="TBEditFirstName" Height="35" Margin="0,0,0,10"/>
+
+                            <TextBlock Text="Отчество:" Margin="0,5,0,0"/>
+                            <TextBox x:Name="TBEditPatronymic" Height="35" Margin="0,0,0,10"/>
+
+                            <TextBlock Text="Email:" Margin="0,5,0,0"/>
+                            <TextBox x:Name="TBEditEmail" Height="35" Margin="0,0,0,10"/>
+
+                            <TextBlock Text="Логин:" Margin="0,5,0,0"/>
+                            <TextBox x:Name="TBEditLogin" Height="35" Margin="0,0,0,10"/>
+
+                            <TextBlock Text="Новый пароль (оставьте пустым, чтобы не менять):" 
+                                       Margin="0,5,0,0" TextWrapping="Wrap"/>
+                            <PasswordBox x:Name="PBEditPassword" Height="35" Margin="0,0,0,10"/>
+
+                            <TextBlock Text="Роль:" Margin="0,5,0,0"/>
+                            <ComboBox x:Name="CBEditRole" Height="35" DisplayMemberPath="RoleName" SelectedValuePath="RoleID"/>
+
+                            <CheckBox x:Name="CHKEditBlocked" Content="Пользователь заблокирован" Margin="0,15,0,10"/>
+
+                            <StackPanel Orientation="Horizontal" Margin="0,10,0,5">
+                                <Button x:Name="UpdateButton" Content="Сохранить" Height="40" Width="120" Click="UpdateButton_Click" Margin="0,0,5,0"/>
+
+                                <Button x:Name="DeleteButton" Content="Удалить" Height="40" Width="100" Click="DeleteButton_Click"/>
+                            </StackPanel>
+
+                            <TextBlock x:Name="LBEditStatus" Foreground="Red" TextWrapping="Wrap" Margin="0,10,0,0"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Page>
