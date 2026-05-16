@@ -19,7 +19,6 @@
         </Border>
         <Button x:Name="ExitButton" Height="40" Width="40" HorizontalAlignment="Right" Content="X" Background="Red" Click="ExitButton_Click"/>
 
-
         <TabControl x:Name="MainTabControl" Grid.Row="1">
             <TabItem>
                 <TabItem.Header>

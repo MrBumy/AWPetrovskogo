@@ -8,6 +8,23 @@
         <EntityTypeShape EntityType="AWPetrovskogoModel.Role" Width="1.5" PointX="0.75" PointY="1.75" />
         <EntityTypeShape EntityType="AWPetrovskogoModel.User" Width="1.5" PointX="3" PointY="1" />
         <AssociationConnector Association="AWPetrovskogoModel.FK__Users__RoleID__4BAC3F29" />
+        <EntityTypeShape EntityType="AWPetrovskogoModel.Application" Width="1.5" PointX="7.625" PointY="7.625" />
+        <EntityTypeShape EntityType="AWPetrovskogoModel.Article" Width="1.5" PointX="5.375" PointY="11.5" />
+        <EntityTypeShape EntityType="AWPetrovskogoModel.Budget" Width="1.5" PointX="7.625" PointY="15.375" />
+        <EntityTypeShape EntityType="AWPetrovskogoModel.Company" Width="1.5" PointX="5.375" PointY="8.125" />
+        <EntityTypeShape EntityType="AWPetrovskogoModel.Customer" Width="1.5" PointX="7.625" PointY="12.25" />
+        <EntityTypeShape EntityType="AWPetrovskogoModel.ReportFormat" Width="1.5" PointX="3" PointY="8.375" />
+        <EntityTypeShape EntityType="AWPetrovskogoModel.Report" Width="1.5" PointX="5.25" PointY="1.125" />
+        <EntityTypeShape EntityType="AWPetrovskogoModel.ReportType" Width="1.5" PointX="3" PointY="6" />
+        <EntityTypeShape EntityType="AWPetrovskogoModel.Status" Width="1.5" PointX="5.375" PointY="5.125" />
+        <AssociationConnector Association="AWPetrovskogoModel.FK__Applicati__Artic__5AEE82B9" />
+        <AssociationConnector Association="AWPetrovskogoModel.FK__Applicati__Compa__59FA5E80" />
+        <AssociationConnector Association="AWPetrovskogoModel.FK__Applicati__Statu__5BE2A6F2" />
+        <AssociationConnector Association="AWPetrovskogoModel.FK__Budgets__Article__6477ECF3" />
+        <AssociationConnector Association="AWPetrovskogoModel.FK__Customers__Compa__60A75C0F" />
+        <AssociationConnector Association="AWPetrovskogoModel.FK__Reports__ReportF__6B24EA82" />
+        <AssociationConnector Association="AWPetrovskogoModel.FK__Reports__Created__6E01572D" />
+        <AssociationConnector Association="AWPetrovskogoModel.FK__Reports__ReportT__6A30C649" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
