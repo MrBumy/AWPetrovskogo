@@ -112,7 +112,7 @@
           <Property Name="AmountOfMistakes" Type="int" Nullable="false" />
           <Property Name="IsBlocked" Type="bit" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Applicati__Artic__5AEE82B9">
+        <Association Name="FK__Applicati__Artic__7C4F7684">
           <End Role="Articles" Type="Self.Articles" Multiplicity="1" />
           <End Role="Applications" Type="Self.Applications" Multiplicity="*" />
           <ReferentialConstraint>
@@ -124,7 +124,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Applicati__Compa__59FA5E80">
+        <Association Name="FK__Applicati__Compa__7B5B524B">
           <End Role="Companies" Type="Self.Companies" Multiplicity="1" />
           <End Role="Applications" Type="Self.Applications" Multiplicity="*" />
           <ReferentialConstraint>
@@ -136,7 +136,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Applicati__Statu__5BE2A6F2">
+        <Association Name="FK__Applicati__Statu__7D439ABD">
           <End Role="Statuses" Type="Self.Statuses" Multiplicity="1" />
           <End Role="Applications" Type="Self.Applications" Multiplicity="*" />
           <ReferentialConstraint>
@@ -148,7 +148,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Budgets__Article__6477ECF3">
+        <Association Name="FK__Budgets__Article__05D8E0BE">
           <End Role="Articles" Type="Self.Articles" Multiplicity="1" />
           <End Role="Budgets" Type="Self.Budgets" Multiplicity="*" />
           <ReferentialConstraint>
@@ -160,7 +160,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Customers__Compa__60A75C0F">
+        <Association Name="FK__Customers__Compa__02084FDA">
           <End Role="Companies" Type="Self.Companies" Multiplicity="0..1" />
           <End Role="Customers" Type="Self.Customers" Multiplicity="*" />
           <ReferentialConstraint>
@@ -172,7 +172,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Reports__Created__6E01572D">
+        <Association Name="FK__Reports__Created__0F624AF8">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Reports" Type="Self.Reports" Multiplicity="*" />
           <ReferentialConstraint>
@@ -184,7 +184,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Reports__ReportF__6B24EA82">
+        <Association Name="FK__Reports__ReportF__0C85DE4D">
           <End Role="ReportFormats" Type="Self.ReportFormats" Multiplicity="1" />
           <End Role="Reports" Type="Self.Reports" Multiplicity="*" />
           <ReferentialConstraint>
@@ -196,7 +196,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Reports__ReportT__6A30C649">
+        <Association Name="FK__Reports__ReportT__0B91BA14">
           <End Role="ReportTypes" Type="Self.ReportTypes" Multiplicity="1" />
           <End Role="Reports" Type="Self.Reports" Multiplicity="*" />
           <ReferentialConstraint>
@@ -232,35 +232,35 @@
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Statuses" EntityType="Self.Statuses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Applicati__Artic__5AEE82B9" Association="Self.FK__Applicati__Artic__5AEE82B9">
+          <AssociationSet Name="FK__Applicati__Artic__7C4F7684" Association="Self.FK__Applicati__Artic__7C4F7684">
             <End Role="Articles" EntitySet="Articles" />
             <End Role="Applications" EntitySet="Applications" />
           </AssociationSet>
-          <AssociationSet Name="FK__Applicati__Compa__59FA5E80" Association="Self.FK__Applicati__Compa__59FA5E80">
+          <AssociationSet Name="FK__Applicati__Compa__7B5B524B" Association="Self.FK__Applicati__Compa__7B5B524B">
             <End Role="Companies" EntitySet="Companies" />
             <End Role="Applications" EntitySet="Applications" />
           </AssociationSet>
-          <AssociationSet Name="FK__Applicati__Statu__5BE2A6F2" Association="Self.FK__Applicati__Statu__5BE2A6F2">
+          <AssociationSet Name="FK__Applicati__Statu__7D439ABD" Association="Self.FK__Applicati__Statu__7D439ABD">
             <End Role="Statuses" EntitySet="Statuses" />
             <End Role="Applications" EntitySet="Applications" />
           </AssociationSet>
-          <AssociationSet Name="FK__Budgets__Article__6477ECF3" Association="Self.FK__Budgets__Article__6477ECF3">
+          <AssociationSet Name="FK__Budgets__Article__05D8E0BE" Association="Self.FK__Budgets__Article__05D8E0BE">
             <End Role="Articles" EntitySet="Articles" />
             <End Role="Budgets" EntitySet="Budgets" />
           </AssociationSet>
-          <AssociationSet Name="FK__Customers__Compa__60A75C0F" Association="Self.FK__Customers__Compa__60A75C0F">
+          <AssociationSet Name="FK__Customers__Compa__02084FDA" Association="Self.FK__Customers__Compa__02084FDA">
             <End Role="Companies" EntitySet="Companies" />
             <End Role="Customers" EntitySet="Customers" />
           </AssociationSet>
-          <AssociationSet Name="FK__Reports__Created__6E01572D" Association="Self.FK__Reports__Created__6E01572D">
+          <AssociationSet Name="FK__Reports__Created__0F624AF8" Association="Self.FK__Reports__Created__0F624AF8">
             <End Role="Users" EntitySet="Users" />
             <End Role="Reports" EntitySet="Reports" />
           </AssociationSet>
-          <AssociationSet Name="FK__Reports__ReportF__6B24EA82" Association="Self.FK__Reports__ReportF__6B24EA82">
+          <AssociationSet Name="FK__Reports__ReportF__0C85DE4D" Association="Self.FK__Reports__ReportF__0C85DE4D">
             <End Role="ReportFormats" EntitySet="ReportFormats" />
             <End Role="Reports" EntitySet="Reports" />
           </AssociationSet>
-          <AssociationSet Name="FK__Reports__ReportT__6A30C649" Association="Self.FK__Reports__ReportT__6A30C649">
+          <AssociationSet Name="FK__Reports__ReportT__0B91BA14" Association="Self.FK__Reports__ReportT__0B91BA14">
             <End Role="ReportTypes" EntitySet="ReportTypes" />
             <End Role="Reports" EntitySet="Reports" />
           </AssociationSet>
@@ -274,88 +274,95 @@
     <edmx:ConceptualModels>
       <Schema Namespace="AWPetrovskogoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="AWPetrovskogoEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Roles" EntityType="AWPetrovskogoModel.Role" />
-          <EntitySet Name="Users" EntityType="AWPetrovskogoModel.User" />
-          <AssociationSet Name="FK__Users__RoleID__4BAC3F29" Association="AWPetrovskogoModel.FK__Users__RoleID__4BAC3F29">
-            <End Role="Role" EntitySet="Roles" />
-            <End Role="User" EntitySet="Users" />
-          </AssociationSet>
-          <EntitySet Name="Applications" EntityType="AWPetrovskogoModel.Application" />
           <EntitySet Name="Articles" EntityType="AWPetrovskogoModel.Article" />
           <EntitySet Name="Budgets" EntityType="AWPetrovskogoModel.Budget" />
-          <EntitySet Name="Companies" EntityType="AWPetrovskogoModel.Company" />
           <EntitySet Name="Customers" EntityType="AWPetrovskogoModel.Customer" />
-          <EntitySet Name="ReportFormats" EntityType="AWPetrovskogoModel.ReportFormat" />
-          <EntitySet Name="Reports" EntityType="AWPetrovskogoModel.Report" />
-          <EntitySet Name="ReportTypes" EntityType="AWPetrovskogoModel.ReportType" />
-          <EntitySet Name="Statuses" EntityType="AWPetrovskogoModel.Status" />
-          <AssociationSet Name="FK__Applicati__Artic__5AEE82B9" Association="AWPetrovskogoModel.FK__Applicati__Artic__5AEE82B9">
-            <End Role="Article" EntitySet="Articles" />
-            <End Role="Application" EntitySet="Applications" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Applicati__Compa__59FA5E80" Association="AWPetrovskogoModel.FK__Applicati__Compa__59FA5E80">
-            <End Role="Company" EntitySet="Companies" />
-            <End Role="Application" EntitySet="Applications" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Applicati__Statu__5BE2A6F2" Association="AWPetrovskogoModel.FK__Applicati__Statu__5BE2A6F2">
-            <End Role="Status" EntitySet="Statuses" />
-            <End Role="Application" EntitySet="Applications" />
-          </AssociationSet>
           <AssociationSet Name="FK__Budgets__Article__6477ECF3" Association="AWPetrovskogoModel.FK__Budgets__Article__6477ECF3">
             <End Role="Article" EntitySet="Articles" />
             <End Role="Budget" EntitySet="Budgets" />
           </AssociationSet>
-          <AssociationSet Name="FK__Customers__Compa__60A75C0F" Association="AWPetrovskogoModel.FK__Customers__Compa__60A75C0F">
+          <EntitySet Name="Applications" EntityType="AWPetrovskogoModel.Application" />
+          <EntitySet Name="Companies" EntityType="AWPetrovskogoModel.Company" />
+          <EntitySet Name="ReportFormats" EntityType="AWPetrovskogoModel.ReportFormat" />
+          <EntitySet Name="Reports" EntityType="AWPetrovskogoModel.Report" />
+          <EntitySet Name="ReportTypes" EntityType="AWPetrovskogoModel.ReportType" />
+          <EntitySet Name="Roles" EntityType="AWPetrovskogoModel.Role" />
+          <EntitySet Name="Statuses" EntityType="AWPetrovskogoModel.Status" />
+          <EntitySet Name="Users" EntityType="AWPetrovskogoModel.User" />
+          <AssociationSet Name="FK__Applicati__Artic__7C4F7684" Association="AWPetrovskogoModel.FK__Applicati__Artic__7C4F7684">
+            <End Role="Article" EntitySet="Articles" />
+            <End Role="Application" EntitySet="Applications" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Applicati__Compa__7B5B524B" Association="AWPetrovskogoModel.FK__Applicati__Compa__7B5B524B">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Application" EntitySet="Applications" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Applicati__Statu__7D439ABD" Association="AWPetrovskogoModel.FK__Applicati__Statu__7D439ABD">
+            <End Role="Status" EntitySet="Statuses" />
+            <End Role="Application" EntitySet="Applications" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Customers__Compa__02084FDA" Association="AWPetrovskogoModel.FK__Customers__Compa__02084FDA">
             <End Role="Company" EntitySet="Companies" />
             <End Role="Customer" EntitySet="Customers" />
           </AssociationSet>
-          <AssociationSet Name="FK__Reports__ReportF__6B24EA82" Association="AWPetrovskogoModel.FK__Reports__ReportF__6B24EA82">
+          <AssociationSet Name="FK__Reports__ReportF__0C85DE4D" Association="AWPetrovskogoModel.FK__Reports__ReportF__0C85DE4D">
             <End Role="ReportFormat" EntitySet="ReportFormats" />
             <End Role="Report" EntitySet="Reports" />
           </AssociationSet>
-          <AssociationSet Name="FK__Reports__Created__6E01572D" Association="AWPetrovskogoModel.FK__Reports__Created__6E01572D">
+          <AssociationSet Name="FK__Reports__Created__0F624AF8" Association="AWPetrovskogoModel.FK__Reports__Created__0F624AF8">
             <End Role="User" EntitySet="Users" />
             <End Role="Report" EntitySet="Reports" />
           </AssociationSet>
-          <AssociationSet Name="FK__Reports__ReportT__6A30C649" Association="AWPetrovskogoModel.FK__Reports__ReportT__6A30C649">
+          <AssociationSet Name="FK__Reports__ReportT__0B91BA14" Association="AWPetrovskogoModel.FK__Reports__ReportT__0B91BA14">
             <End Role="ReportType" EntitySet="ReportTypes" />
             <End Role="Report" EntitySet="Reports" />
           </AssociationSet>
-        </EntityContainer>
-        <EntityType Name="Role">
+          <AssociationSet Name="FK__Users__RoleID__4BAC3F29" Association="AWPetrovskogoModel.FK__Users__RoleID__4BAC3F29">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Article">
           <Key>
-            <PropertyRef Name="RoleID" />
+            <PropertyRef Name="ArticleID" />
           </Key>
-          <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Users" Relationship="AWPetrovskogoModel.FK__Users__RoleID__4BAC3F29" FromRole="Role" ToRole="User" />
+          <Property Name="ArticleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ArticleName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Hint" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Budgets" Relationship="AWPetrovskogoModel.FK__Budgets__Article__6477ECF3" FromRole="Article" ToRole="Budget" />
+          <NavigationProperty Name="Applications" Relationship="AWPetrovskogoModel.FK__Applicati__Artic__7C4F7684" FromRole="Article" ToRole="Application" />
         </EntityType>
-        <EntityType Name="User">
+        <EntityType Name="Budget">
           <Key>
-            <PropertyRef Name="UserID" />
+            <PropertyRef Name="BudgetID" />
           </Key>
-          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="55" FixedLength="false" Unicode="true" />
+          <Property Name="BudgetID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Month" Type="Int32" Nullable="false" />
+          <Property Name="ArticleID" Type="Int32" Nullable="false" />
+          <Property Name="Limit" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <NavigationProperty Name="Article" Relationship="AWPetrovskogoModel.FK__Budgets__Article__6477ECF3" FromRole="Budget" ToRole="Article" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FirstName" Type="String" Nullable="false" MaxLength="55" FixedLength="false" Unicode="true" />
-          <Property Name="Patronymic" Type="String" MaxLength="55" FixedLength="false" Unicode="true" />
-          <Property Name="EMail" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Login" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="RoleID" Type="Int32" />
-          <Property Name="AmountOfMistakes" Type="Int32" Nullable="false" />
-          <Property Name="IsBlocked" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Role" Relationship="AWPetrovskogoModel.FK__Users__RoleID__4BAC3F29" FromRole="User" ToRole="Role" />
-          <NavigationProperty Name="Reports" Relationship="AWPetrovskogoModel.FK__Reports__Created__6E01572D" FromRole="User" ToRole="Report" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="55" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyID" Type="Int32" />
+          <NavigationProperty Name="Company" Relationship="AWPetrovskogoModel.FK__Customers__Compa__02084FDA" FromRole="Customer" ToRole="Company" />
         </EntityType>
-        <Association Name="FK__Users__RoleID__4BAC3F29">
-          <End Type="AWPetrovskogoModel.Role" Role="Role" Multiplicity="0..1" />
-          <End Type="AWPetrovskogoModel.User" Role="User" Multiplicity="*" />
+        <Association Name="FK__Budgets__Article__6477ECF3">
+          <End Type="AWPetrovskogoModel.Article" Role="Article" Multiplicity="1" />
+          <End Type="AWPetrovskogoModel.Budget" Role="Budget" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Role">
-              <PropertyRef Name="RoleID" />
+            <Principal Role="Article">
+              <PropertyRef Name="ArticleID" />
             </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="RoleID" />
+            <Dependent Role="Budget">
+              <PropertyRef Name="ArticleID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -372,30 +379,9 @@
           <Property Name="StatusID" Type="Int32" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Article" Relationship="AWPetrovskogoModel.FK__Applicati__Artic__5AEE82B9" FromRole="Application" ToRole="Article" />
-          <NavigationProperty Name="Company" Relationship="AWPetrovskogoModel.FK__Applicati__Compa__59FA5E80" FromRole="Application" ToRole="Company" />
-          <NavigationProperty Name="Status" Relationship="AWPetrovskogoModel.FK__Applicati__Statu__5BE2A6F2" FromRole="Application" ToRole="Status" />
-        </EntityType>
-        <EntityType Name="Article">
-          <Key>
-            <PropertyRef Name="ArticleID" />
-          </Key>
-          <Property Name="ArticleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ArticleName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Hint" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Applications" Relationship="AWPetrovskogoModel.FK__Applicati__Artic__5AEE82B9" FromRole="Article" ToRole="Application" />
-          <NavigationProperty Name="Budgets" Relationship="AWPetrovskogoModel.FK__Budgets__Article__6477ECF3" FromRole="Article" ToRole="Budget" />
-        </EntityType>
-        <EntityType Name="Budget">
-          <Key>
-            <PropertyRef Name="BudgetID" />
-          </Key>
-          <Property Name="BudgetID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Year" Type="Int32" Nullable="false" />
-          <Property Name="Month" Type="Int32" Nullable="false" />
-          <Property Name="ArticleID" Type="Int32" Nullable="false" />
-          <Property Name="Limit" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <NavigationProperty Name="Article" Relationship="AWPetrovskogoModel.FK__Budgets__Article__6477ECF3" FromRole="Budget" ToRole="Article" />
+          <NavigationProperty Name="Article" Relationship="AWPetrovskogoModel.FK__Applicati__Artic__7C4F7684" FromRole="Application" ToRole="Article" />
+          <NavigationProperty Name="Company" Relationship="AWPetrovskogoModel.FK__Applicati__Compa__7B5B524B" FromRole="Application" ToRole="Company" />
+          <NavigationProperty Name="Status" Relationship="AWPetrovskogoModel.FK__Applicati__Statu__7D439ABD" FromRole="Application" ToRole="Status" />
         </EntityType>
         <EntityType Name="Company">
           <Key>
@@ -405,19 +391,8 @@
           <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Address" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Applications" Relationship="AWPetrovskogoModel.FK__Applicati__Compa__59FA5E80" FromRole="Company" ToRole="Application" />
-          <NavigationProperty Name="Customers" Relationship="AWPetrovskogoModel.FK__Customers__Compa__60A75C0F" FromRole="Company" ToRole="Customer" />
-        </EntityType>
-        <EntityType Name="Customer">
-          <Key>
-            <PropertyRef Name="CustomerID" />
-          </Key>
-          <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="55" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="55" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="CompanyID" Type="Int32" />
-          <NavigationProperty Name="Company" Relationship="AWPetrovskogoModel.FK__Customers__Compa__60A75C0F" FromRole="Customer" ToRole="Company" />
+          <NavigationProperty Name="Applications" Relationship="AWPetrovskogoModel.FK__Applicati__Compa__7B5B524B" FromRole="Company" ToRole="Application" />
+          <NavigationProperty Name="Customers" Relationship="AWPetrovskogoModel.FK__Customers__Compa__02084FDA" FromRole="Company" ToRole="Customer" />
         </EntityType>
         <EntityType Name="ReportFormat">
           <Key>
@@ -425,7 +400,7 @@
           </Key>
           <Property Name="ReportFormatID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FormatName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Reports" Relationship="AWPetrovskogoModel.FK__Reports__ReportF__6B24EA82" FromRole="ReportFormat" ToRole="Report" />
+          <NavigationProperty Name="Reports" Relationship="AWPetrovskogoModel.FK__Reports__ReportF__0C85DE4D" FromRole="ReportFormat" ToRole="Report" />
         </EntityType>
         <EntityType Name="Report">
           <Key>
@@ -439,9 +414,9 @@
           <Property Name="IsCancelledApplications" Type="Boolean" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="ReportFormat" Relationship="AWPetrovskogoModel.FK__Reports__ReportF__6B24EA82" FromRole="Report" ToRole="ReportFormat" />
-          <NavigationProperty Name="User" Relationship="AWPetrovskogoModel.FK__Reports__Created__6E01572D" FromRole="Report" ToRole="User" />
-          <NavigationProperty Name="ReportType" Relationship="AWPetrovskogoModel.FK__Reports__ReportT__6A30C649" FromRole="Report" ToRole="ReportType" />
+          <NavigationProperty Name="ReportFormat" Relationship="AWPetrovskogoModel.FK__Reports__ReportF__0C85DE4D" FromRole="Report" ToRole="ReportFormat" />
+          <NavigationProperty Name="User" Relationship="AWPetrovskogoModel.FK__Reports__Created__0F624AF8" FromRole="Report" ToRole="User" />
+          <NavigationProperty Name="ReportType" Relationship="AWPetrovskogoModel.FK__Reports__ReportT__0B91BA14" FromRole="Report" ToRole="ReportType" />
         </EntityType>
         <EntityType Name="ReportType">
           <Key>
@@ -449,7 +424,15 @@
           </Key>
           <Property Name="ReportTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TypeName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Reports" Relationship="AWPetrovskogoModel.FK__Reports__ReportT__6A30C649" FromRole="ReportType" ToRole="Report" />
+          <NavigationProperty Name="Reports" Relationship="AWPetrovskogoModel.FK__Reports__ReportT__0B91BA14" FromRole="ReportType" ToRole="Report" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="AWPetrovskogoModel.FK__Users__RoleID__4BAC3F29" FromRole="Role" ToRole="User" />
         </EntityType>
         <EntityType Name="Status">
           <Key>
@@ -457,9 +440,26 @@
           </Key>
           <Property Name="StatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="StatusName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Applications" Relationship="AWPetrovskogoModel.FK__Applicati__Statu__5BE2A6F2" FromRole="Status" ToRole="Application" />
+          <NavigationProperty Name="Applications" Relationship="AWPetrovskogoModel.FK__Applicati__Statu__7D439ABD" FromRole="Status" ToRole="Application" />
         </EntityType>
-        <Association Name="FK__Applicati__Artic__5AEE82B9">
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="55" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="55" FixedLength="false" Unicode="true" />
+          <Property Name="Patronymic" Type="String" MaxLength="55" FixedLength="false" Unicode="true" />
+          <Property Name="EMail" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="RoleID" Type="Int32" />
+          <Property Name="AmountOfMistakes" Type="Int32" Nullable="false" />
+          <Property Name="IsBlocked" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Reports" Relationship="AWPetrovskogoModel.FK__Reports__Created__0F624AF8" FromRole="User" ToRole="Report" />
+          <NavigationProperty Name="Role" Relationship="AWPetrovskogoModel.FK__Users__RoleID__4BAC3F29" FromRole="User" ToRole="Role" />
+        </EntityType>
+        <Association Name="FK__Applicati__Artic__7C4F7684">
           <End Type="AWPetrovskogoModel.Article" Role="Article" Multiplicity="1" />
           <End Type="AWPetrovskogoModel.Application" Role="Application" Multiplicity="*" />
           <ReferentialConstraint>
@@ -471,7 +471,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Applicati__Compa__59FA5E80">
+        <Association Name="FK__Applicati__Compa__7B5B524B">
           <End Type="AWPetrovskogoModel.Company" Role="Company" Multiplicity="1" />
           <End Type="AWPetrovskogoModel.Application" Role="Application" Multiplicity="*" />
           <ReferentialConstraint>
@@ -483,7 +483,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Applicati__Statu__5BE2A6F2">
+        <Association Name="FK__Applicati__Statu__7D439ABD">
           <End Type="AWPetrovskogoModel.Status" Role="Status" Multiplicity="1" />
           <End Type="AWPetrovskogoModel.Application" Role="Application" Multiplicity="*" />
           <ReferentialConstraint>
@@ -495,19 +495,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Budgets__Article__6477ECF3">
-          <End Type="AWPetrovskogoModel.Article" Role="Article" Multiplicity="1" />
-          <End Type="AWPetrovskogoModel.Budget" Role="Budget" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Article">
-              <PropertyRef Name="ArticleID" />
-            </Principal>
-            <Dependent Role="Budget">
-              <PropertyRef Name="ArticleID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Customers__Compa__60A75C0F">
+        <Association Name="FK__Customers__Compa__02084FDA">
           <End Type="AWPetrovskogoModel.Company" Role="Company" Multiplicity="0..1" />
           <End Type="AWPetrovskogoModel.Customer" Role="Customer" Multiplicity="*" />
           <ReferentialConstraint>
@@ -519,7 +507,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Reports__ReportF__6B24EA82">
+        <Association Name="FK__Reports__ReportF__0C85DE4D">
           <End Type="AWPetrovskogoModel.ReportFormat" Role="ReportFormat" Multiplicity="1" />
           <End Type="AWPetrovskogoModel.Report" Role="Report" Multiplicity="*" />
           <ReferentialConstraint>
@@ -531,7 +519,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Reports__Created__6E01572D">
+        <Association Name="FK__Reports__Created__0F624AF8">
           <End Type="AWPetrovskogoModel.User" Role="User" Multiplicity="1" />
           <End Type="AWPetrovskogoModel.Report" Role="Report" Multiplicity="*" />
           <ReferentialConstraint>
@@ -543,7 +531,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Reports__ReportT__6A30C649">
+        <Association Name="FK__Reports__ReportT__0B91BA14">
           <End Type="AWPetrovskogoModel.ReportType" Role="ReportType" Multiplicity="1" />
           <End Type="AWPetrovskogoModel.Report" Role="Report" Multiplicity="*" />
           <ReferentialConstraint>
@@ -555,51 +543,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <Association Name="FK__Users__RoleID__4BAC3F29">
+          <End Type="AWPetrovskogoModel.Role" Role="Role" Multiplicity="0..1" />
+          <End Type="AWPetrovskogoModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище AWPetrovskogoModelContainer" CdmEntityContainer="AWPetrovskogoEntities">
-          <EntitySetMapping Name="Roles">
-            <EntityTypeMapping TypeName="AWPetrovskogoModel.Role">
-              <MappingFragment StoreEntitySet="Roles">
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
-                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="AWPetrovskogoModel.User">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="IsBlocked" ColumnName="IsBlocked" />
-                <ScalarProperty Name="AmountOfMistakes" ColumnName="AmountOfMistakes" />
-                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Login" ColumnName="Login" />
-                <ScalarProperty Name="EMail" ColumnName="EMail" />
-                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Applications">
-            <EntityTypeMapping TypeName="AWPetrovskogoModel.Application">
-              <MappingFragment StoreEntitySet="Applications">
-                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
-                <ScalarProperty Name="SumInRubles" ColumnName="SumInRubles" />
-                <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
-                <ScalarProperty Name="Reason" ColumnName="Reason" />
-                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
-                <ScalarProperty Name="TransferName" ColumnName="TransferName" />
-                <ScalarProperty Name="ApplicationID" ColumnName="ApplicationID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Articles">
             <EntityTypeMapping TypeName="AWPetrovskogoModel.Article">
               <MappingFragment StoreEntitySet="Articles">
@@ -620,16 +581,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Companies">
-            <EntityTypeMapping TypeName="AWPetrovskogoModel.Company">
-              <MappingFragment StoreEntitySet="Companies">
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="AWPetrovskogoModel.Customer">
               <MappingFragment StoreEntitySet="Customers">
@@ -638,6 +589,31 @@
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Applications">
+            <EntityTypeMapping TypeName="AWPetrovskogoModel.Application">
+              <MappingFragment StoreEntitySet="Applications">
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="SumInRubles" ColumnName="SumInRubles" />
+                <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="TransferName" ColumnName="TransferName" />
+                <ScalarProperty Name="ApplicationID" ColumnName="ApplicationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="AWPetrovskogoModel.Company">
+              <MappingFragment StoreEntitySet="Companies">
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -671,6 +647,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="AWPetrovskogoModel.Role">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Statuses">
             <EntityTypeMapping TypeName="AWPetrovskogoModel.Status">
               <MappingFragment StoreEntitySet="Statuses">
@@ -679,7 +663,23 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="AWPetrovskogoModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="IsBlocked" ColumnName="IsBlocked" />
+                <ScalarProperty Name="AmountOfMistakes" ColumnName="AmountOfMistakes" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="EMail" ColumnName="EMail" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

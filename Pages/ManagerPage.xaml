@@ -6,9 +6,167 @@
       xmlns:local="clr-namespace:AWPetrovskogo.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ManagerPage">
+      Title="ManagerPage" IsVisibleChanged="Page_IsVisibleChanged">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="#154fa3" Padding="10">
+            <Grid>
+                <TextBlock Text="Руководитель" FontSize="18" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Button x:Name="ExitButton" Height="40" Width="40" HorizontalAlignment="Right" Content="X" Background="Red" Click="ExitButton_Click"/>
+            </Grid>
+        </Border>
+
+        <TabControl x:Name="MainTabControl" Grid.Row="1">
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Реестр на подпись" FontSize="14"/>
+                    </StackPanel>
+                </TabItem.Header>
+
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="0" Background="#F0F0F0" Padding="10" Margin="0,0,0,10">
+                        <StackPanel>
+                            <TextBlock Text="Фильтры" FontWeight="Bold" Margin="0,0,0,10"/>
+                            <ComboBox x:Name="CBStatusFilter" Height="35" SelectionChanged="CBStatusFilter_SelectionChanged" Loaded="CBStatusFilter_Loaded" VerticalContentAlignment="Center">
+                                <ComboBoxItem Content="Все заявки"/>
+                                <ComboBoxItem Content="На согласовании"/>
+                                <ComboBoxItem Content="Согласована"/>
+                                <ComboBoxItem Content="Отклонена"/>
+                            </ComboBox>
+                        </StackPanel>
+                    </Border>
+
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                        <ItemsControl x:Name="ApplicationsList">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Background="White" Margin="0,5" Padding="10" BorderBrush="#E0E0E0" 
+                                            BorderThickness="1" MouseLeftButtonUp="ApplicationItem_Click" Tag="{Binding}">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding TransferName}" FontWeight="Bold" FontSize="14"/>
+                                                <TextBlock Text="{Binding CompanyName}" FontSize="12" Foreground="#666"/>
+                                                <TextBlock FontSize="11" Foreground="#888">
+                                                    <Run Text="Сумма: "/>
+                                                    <Run Text="{Binding SumInRubles, StringFormat={}{0:N2}}"/>
+                                                    <Run Text=" руб."/>
+                                                </TextBlock>
+                                            </StackPanel>
+                                            <Border Grid.Column="1" Background="{Binding StatusColor}" 
+                                                    Padding="8,4" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                                <TextBlock Text="{Binding StatusName}" FontSize="11" Foreground="White"/>
+                                            </Border>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+                        <Button x:Name="ApproveButton" Content="Утвердить" Width="120" Height="40" Margin="5" Click="ApproveButton_Click"/>
+                        <Button x:Name="RejectButton" Content="Отклонить" Width="120" Height="40" Margin="5" Click="RejectButton_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Мониторинг бюджета" FontSize="14"/>
+                    </StackPanel>
+                </TabItem.Header>
+
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="10">
+                        <TextBlock Text="Мониторинг бюджета" FontSize="16" FontWeight="Bold" 
+                                   Foreground="#1A3A5C" HorizontalAlignment="Center" Margin="0,0,0,15"/>
+
+                        <Border Background="#F0F0F0" Padding="10" Margin="0,0,0,15">
+                            <StackPanel>
+                                <TextBlock Text="Параметры" FontWeight="Bold" Margin="0,0,0,10"/>
+
+                                <TextBlock Text="Статья расходов:" Margin="0,5,0,0"/>
+                                <ComboBox x:Name="CBBudgetArticle" Height="35" DisplayMemberPath="ArticleName" SelectedValuePath="ArticleID" SelectionChanged="CBBudgetArticle_SelectionChanged" VerticalContentAlignment="Center"/>
+
+                                <TextBlock Text="Год:" Margin="0,10,0,0"/>
+                                <ComboBox x:Name="CBBudgetYear" Height="35" SelectionChanged="CBBudgetYear_SelectionChanged" VerticalContentAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Background="#E3F2FD" Padding="10" Margin="0,0,0,15">
+                            <StackPanel>
+                                <TextBlock Text="Сводная информация" FontWeight="Bold" Margin="0,0,0,10"/>
+
+                                <Border Background="White" Padding="10" Margin="0,0,0,10">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0">
+                                            <TextBlock Text="Годовой лимит" FontSize="12"/>
+                                            <TextBlock x:Name="TBTotalLimit" FontSize="20"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1">
+                                            <TextBlock Text="Израсходовано" FontSize="12"/>
+                                            <TextBlock x:Name="TBTotalSpent" FontSize="20"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+
+                                <Border Background="White" Padding="10">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0">
+                                            <TextBlock Text="Остаток" FontSize="12"/>
+                                            <TextBlock x:Name="TBTotalRemaining" FontSize="20"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1">
+                                            <TextBlock Text="Процент использования" FontSize="12"/>
+                                            <TextBlock x:Name="TBPercentUsed" FontSize="20"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Background="#FFF3E0" Padding="10" Margin="0,0,0,15">
+                            <StackPanel>
+                                <TextBlock Text="Детализация по месяцам" FontWeight="Bold" Margin="0,0,0,10"/>
+                                <DataGrid x:Name="DGMonthlyBudget" AutoGenerateColumns="False" IsReadOnly="True" MaxHeight="300" FontSize="11">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Месяц" Binding="{Binding MonthName}" Width="80"/>
+                                        <DataGridTextColumn Header="Лимит" Binding="{Binding Limit, StringFormat={}{0:N2}}" Width="80"/>
+                                        <DataGridTextColumn Header="Расход" Binding="{Binding Spent, StringFormat={}{0:N2}}" Width="80"/>
+                                        <DataGridTextColumn Header="Остаток" Binding="{Binding Remaining, StringFormat={}{0:N2}}" Width="80"/>
+                                        <DataGridTextColumn Header="%" Binding="{Binding Percent, StringFormat={}{0:F1}%}" Width="50"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Page>

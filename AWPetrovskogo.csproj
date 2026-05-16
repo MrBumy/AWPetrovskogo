@@ -78,6 +78,7 @@
     <Compile Include="Data\Application.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\ApplicationItem.cs" />
     <Compile Include="Data\Article.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -107,6 +108,7 @@
       <DependentUpon>DBModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Data\FrameObject.cs" />
+    <Compile Include="Data\MonthlyBudgetData.cs" />
     <Compile Include="Data\Report.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>

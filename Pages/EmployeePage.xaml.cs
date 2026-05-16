@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
+using Microsoft.Win32;
 using AWPetrovskogo.Data;
 using Application = AWPetrovskogo.Data.Application;
 
@@ -292,55 +294,55 @@ namespace AWPetrovskogo.Pages
 
         private void GenerateReportButton_Click(object sender, RoutedEventArgs e)
         {
-            if (CBReportType.SelectedValue == null)
-            {
-                MessageBox.Show("Выберите тип отчета!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
-            if (DPFromDate.SelectedDate == null || DPToDate.SelectedDate == null)
-            {
-                MessageBox.Show("Выберите период!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
-            if (CBReportFormat.SelectedValue == null)
-            {
-                MessageBox.Show("Выберите формат отчета!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
-            DateTime fromDate = DPFromDate.SelectedDate.Value;
-            DateTime toDate = DPToDate.SelectedDate.Value;
-
-            if (fromDate > toDate)
-            {
-                MessageBox.Show("Дата 'с' не может быть позже даты 'по'!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
             try
             {
-                var newReport = new Report
+                string reportsFolder = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Reports");
+                if (!Directory.Exists(reportsFolder)) Directory.CreateDirectory(reportsFolder);
+
+                string fileName = $"Report_{DateTime.Now:yyyyMMdd_HHmmss}.csv";
+                string filePath = System.IO.Path.Combine(reportsFolder, fileName);
+
+                using (var writer = new StreamWriter(filePath, false, Encoding.UTF8))
                 {
-                    ReportTypeID = (int)CBReportType.SelectedValue,
-                    FromDate = fromDate,
-                    ToDate = toDate,
-                    ReportFormatID = (int)CBReportFormat.SelectedValue,
-                    IsCancelledApplications = CHKCancelledApplications.IsChecked ?? false,
-                    CreatedDate = DateTime.Now,
-                    CreatedBy = currentUserId
-                };
+                    if ((int)CBReportType.SelectedValue == 1)
+                    {
+                        writer.WriteLine("ID;Наименование платежа;Компания;Статья;Сумма;Статус;Дата");
 
-                ConnectObject.GetConnect().Reports.Add(newReport);
-                ConnectObject.GetConnect().SaveChanges();
+                        var apps = ConnectObject.GetConnect().Applications
+                            .Where(a => a.CreatedDate >= DPFromDate.SelectedDate.Value &&
+                                       a.CreatedDate <= DPToDate.SelectedDate.Value)
+                            .ToList();
 
-                MessageBox.Show($"Отчет успешно сформирован!\n\n" +
-                    $"Тип: {CBReportType.Text}\n" +
-                    $"Период: {fromDate:dd.MM.yyyy} - {toDate:dd.MM.yyyy}\n" +
-                    $"Формат: {CBReportFormat.Text}\n" +
-                    $"ID отчета: {newReport.ReportID}",
-                    "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                        foreach (var app in apps)
+                        {
+                            var company = ConnectObject.GetConnect().Companies.Find(app.CompanyID);
+                            var article = ConnectObject.GetConnect().Articles.Find(app.ArticleID);
+                            var status = ConnectObject.GetConnect().Statuses.Find(app.StatusID);
+
+                            writer.WriteLine($"{app.ApplicationID};{app.TransferName};{company?.CompanyName};{article?.ArticleName};{app.SumInRubles};{status?.StatusName};{app.CreatedDate:dd.MM.yyyy}");
+                        }
+                    }
+                    else
+                    {
+                        writer.WriteLine("Год;Месяц;Статья;Лимит;Расход;Остаток");
+
+                        var budgets = ConnectObject.GetConnect().Budgets.ToList();
+
+                        foreach (var budget in budgets)
+                        {
+                            var article = ConnectObject.GetConnect().Articles.Find(budget.ArticleID);
+                            decimal spent = ConnectObject.GetConnect().Applications
+                                .Where(a => a.ArticleID == budget.ArticleID &&
+                                           a.CreatedDate.Year == budget.Year &&
+                                           a.CreatedDate.Month == budget.Month)
+                                .Sum(a => (decimal?)a.SumInRubles) ?? 0;
+
+                            writer.WriteLine($"{budget.Year};{budget.Month};{article?.ArticleName};{budget.Limit};{spent};{budget.Limit - spent}");
+                        }
+                    }
+                }
+
+                MessageBox.Show($"Отчет сохранен: {filePath}", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
