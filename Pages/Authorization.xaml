@@ -20,9 +20,7 @@
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
 
-        <Border Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" 
-                Background="#154fa3">
-        </Border>
+        <Border Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Background="#154fa3"/>
 
         <StackPanel Grid.Row="1" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20">
             <Image Source="/Data/Images/logo.jpg"/>
@@ -34,11 +32,7 @@
             <Border Height="3" Width="60" Background="#4CAF50" CornerRadius="3" Margin="0,30,0,0"/>
         </StackPanel>
 
-        <Border Grid.Row="1" Grid.Column="1" 
-                Background="White" 
-                Margin="40,30,40,30"
-                Padding="30">
-
+        <Border Grid.Row="1" Grid.Column="1" Background="White" Margin="40,30,40,30" Padding="30">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -62,11 +56,10 @@
                     <PasswordBox x:Name="PBPassword" Height="45" FontSize="14" BorderThickness="1" BorderBrush="#DDDDDD" Padding="15,0" Background="#F9F9F9" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
                 </StackPanel>
 
-                <Button x:Name="btnLogin" Grid.Row="4" Content="Войти" Height="40" Margin="0,25,0,0" FontSize="14" Click="btnLogin_Click"/>
+                <Button x:Name="LoginButton" Grid.Row="4" Content="Войти" Height="40" Margin="0,25,0,0" FontSize="14" Click="LoginButton_Click"/>
 
             </Grid>
         </Border>
-
         <TextBlock Grid.Row="2" Grid.Column="1" Text="© 2026 ПАО «Завод им. Г. И. Петровского»" FontSize="10" Foreground="#AAAAAA" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,15"/>
     </Grid>
 </Page>
