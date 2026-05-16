@@ -12,7 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
+using Newtonsoft.Json;
 using AWPetrovskogo.Data;
+using System.IO;
 
 namespace AWPetrovskogo.Pages
 {
@@ -203,8 +206,6 @@ namespace AWPetrovskogo.Pages
                 TBEditLogin.Text = tempUser.Login;
                 CBEditRole.SelectedValue = tempUser.RoleID;
                 CHKEditBlocked.IsChecked = tempUser.IsBlocked;
-
-                LBEditStatus.Text = "";
             }
         }
 
@@ -234,8 +235,6 @@ namespace AWPetrovskogo.Pages
                 ConnectObject.GetConnect().SaveChanges();
 
                 MessageBox.Show($"Данные пользователя {tempUser.LastName} {tempUser.FirstName} успешно обновлены!", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                LBEditStatus.Text = "";
                 LoadData();
             }
             catch (Exception ex)
@@ -287,7 +286,67 @@ namespace AWPetrovskogo.Pages
             CHKEditBlocked.IsChecked = false;
             CBUsersForEdit.SelectedIndex = -1;
             tempUser = null;
-            LBEditStatus.Text = "";
+        }
+
+        private void ExportUsersButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var users = ConnectObject.GetConnect().Users
+                    .Select(u => new
+                    {
+                        u.UserID,
+                        u.LastName,
+                        u.FirstName,
+                        u.Patronymic,
+                        u.EMail,
+                        u.Login,
+                        RoleName = u.Role.RoleName,
+                        u.AmountOfMistakes,
+                        u.IsBlocked
+                    })
+                    .ToList();
+
+                if (users.Count == 0)
+                {
+                    MessageBox.Show("Нет пользователей для выгрузки!", "Внимание",
+                        MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                string projectDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                string exportsFolder = System.IO.Path.Combine(projectDirectory, "Exports");
+
+                if (!Directory.Exists(exportsFolder))
+                {
+                    Directory.CreateDirectory(exportsFolder);
+                }
+
+                string fileName = $"Users_Export_{DateTime.Now:yyyyMMdd_HHmmss}.json";
+                string filePath = System.IO.Path.Combine(exportsFolder, fileName);
+
+                var data = new
+                {
+                    ExportDate = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss"),
+                    TotalUsers = users.Count,
+                    Users = users
+                };
+
+                string jsonString = JsonConvert.SerializeObject(data, Formatting.Indented);
+
+                File.WriteAllText(filePath, jsonString);
+
+                MessageBox.Show($"Выгрузка выполнена успешно!\n\n" +
+                    $"Папка: {exportsFolder}\n" +
+                    $"Файл: {fileName}\n" +
+                    $"Пользователей: {users.Count}\n\n" +
+                    $"Файл сохранен в папке проекта Exports",
+                    "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при выгрузке: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

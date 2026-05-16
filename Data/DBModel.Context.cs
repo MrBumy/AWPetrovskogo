@@ -27,5 +27,14 @@ namespace AWPetrovskogo.Data
     
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Application> Applications { get; set; }
+        public virtual DbSet<Article> Articles { get; set; }
+        public virtual DbSet<Budget> Budgets { get; set; }
+        public virtual DbSet<Company> Companies { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<ReportFormat> ReportFormats { get; set; }
+        public virtual DbSet<Report> Reports { get; set; }
+        public virtual DbSet<ReportType> ReportTypes { get; set; }
+        public virtual DbSet<Status> Statuses { get; set; }
     }
 }

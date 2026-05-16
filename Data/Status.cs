@@ -12,27 +12,18 @@ namespace AWPetrovskogo.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Status
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
+        public Status()
         {
-            this.Reports = new HashSet<Report>();
+            this.Applications = new HashSet<Application>();
         }
     
-        public int UserID { get; set; }
-        public string LastName { get; set; }
-        public string FirstName { get; set; }
-        public string Patronymic { get; set; }
-        public string EMail { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
-        public Nullable<int> RoleID { get; set; }
-        public int AmountOfMistakes { get; set; }
-        public bool IsBlocked { get; set; }
+        public int StatusID { get; set; }
+        public string StatusName { get; set; }
     
-        public virtual Role Role { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Report> Reports { get; set; }
+        public virtual ICollection<Application> Applications { get; set; }
     }
 }

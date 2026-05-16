@@ -6,9 +6,163 @@
       xmlns:local="clr-namespace:AWPetrovskogo.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="EmployeePage">
+      Title="EmployeePage" IsVisibleChanged="Page_IsVisibleChanged">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="#154fa3" Padding="10">
+            <Grid>
+                <TextBlock Text="Сотрудник" FontSize="18" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Button x:Name="ExitButton" Height="40" Width="40" HorizontalAlignment="Right" Content="X" Background="Red" Click="ExitButton_Click"/>
+            </Grid>
+        </Border>
+
+        <TabControl x:Name="MainTabControl" Grid.Row="1">
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Планирование бюджета" FontSize="14"/>
+                    </StackPanel>
+                </TabItem.Header>
+
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="10">
+                        <TextBlock Text="Планирование бюджета" FontSize="16" FontWeight="Bold" Foreground="#1A3A5C" HorizontalAlignment="Center" Margin="0,0,0,15"/>
+
+                        <Border Background="#F0F0F0" Padding="10" Margin="0,0,0,15">
+                            <StackPanel>
+                                <TextBlock Text="Фильтры" FontWeight="Bold" Margin="0,0,0,10"/>
+
+                                <TextBlock Text="Год:" Margin="0,5,0,0"/>
+                                <ComboBox x:Name="CBudgetYear" Height="35" SelectionChanged="CBudgetYear_SelectionChanged" VerticalContentAlignment="Center"/>
+
+                                <TextBlock Text="Месяц:" Margin="0,10,0,0"/>
+                                <ComboBox x:Name="CBudgetMonth" Height="35" SelectionChanged="CBudgetMonth_SelectionChanged" VerticalContentAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Background="#E3F2FD" Padding="10" Margin="0,0,0,15">
+                            <StackPanel>
+                                <TextBlock Text="Текущие лимиты" FontWeight="Bold" Margin="0,0,0,10"/>
+                                <DataGrid x:Name="DGBudgets" AutoGenerateColumns="False" IsReadOnly="True" MaxHeight="200" FontSize="11">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Статья" Binding="{Binding ArticleName}" Width="150"/>
+                                        <DataGridTextColumn Header="Лимит" Binding="{Binding Limit}" Width="100"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Background="#FFF3E0" Padding="10" Margin="0,0,0,15">
+                            <StackPanel>
+                                <TextBlock Text="Добавление/редактирование лимита" FontWeight="Bold" Margin="0,0,0,10"/>
+
+                                <TextBlock Text="Статья расходов:" Margin="0,5,0,0"/>
+                                <ComboBox x:Name="CBudgetArticle" Height="35" DisplayMemberPath="ArticleName" SelectedValuePath="ArticleID" SelectionChanged="CBudgetArticle_SelectionChanged" VerticalContentAlignment="Center"/>
+
+                                <TextBlock Text="Лимит (руб.):" Margin="0,10,0,0"/>
+                                <TextBox x:Name="TBudgetLimit" Height="35" VerticalContentAlignment="Center"/>
+
+                                <Button x:Name="SaveBudgetButton" 
+                                        Content="Утвердить бюджет" Height="45" FontSize="14" Margin="0,15,0,0" Click="SaveBudgetButton_Click"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Регистрация заявки" FontSize="14"/>
+                    </StackPanel>
+                </TabItem.Header>
+
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="10">
+                        <TextBlock Text="Регистрация заявки"  FontSize="16" FontWeight="Bold" Foreground="#1A3A5C" HorizontalAlignment="Center" Margin="0,0,0,15"/>
+
+                        <Border Background="#F0F0F0" Padding="10" Margin="0,0,0,15">
+                            <StackPanel>
+                                <TextBlock Text="Реквизиты" FontWeight="Bold" Margin="0,0,0,10"/>
+
+                                <TextBlock Text="Наименование платежа:" Margin="0,5,0,0"/>
+                                <TextBox x:Name="TBTransferName" Height="35" VerticalContentAlignment="Center"/>
+
+                                <TextBlock Text="Контрагент (компания):" Margin="0,10,0,0"/>
+                                <ComboBox x:Name="CBApplicationCompany" Height="35" DisplayMemberPath="CompanyName" SelectedValuePath="CompanyID" VerticalContentAlignment="Center"/>
+
+                                <TextBlock Text="Основание платежа:" Margin="0,10,0,0"/>
+                                <TextBox x:Name="TBReason" Height="60" TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Background="#E8F5E9" Padding="10" Margin="0,0,0,15">
+                            <StackPanel>
+                                <TextBlock Text="Финансовые параметры" FontWeight="Bold" Margin="0,0,0,10"/>
+
+                                <TextBlock Text="Статья расходов:" Margin="0,5,0,0"/>
+                                <ComboBox x:Name="CBApplicationArticle" Height="35" DisplayMemberPath="ArticleName" SelectedValuePath="ArticleID" SelectionChanged="CBApplicationArticle_SelectionChanged" VerticalContentAlignment="Center"/>
+
+                                <TextBlock Text="Остаток по статье (руб.):" Margin="0,10,0,0"/>
+                                <TextBox x:Name="TBRemaining" Height="35" IsReadOnly="True" Background="#E8E8E8" VerticalContentAlignment="Center"/>
+
+                                <TextBlock Text="Сумма (руб.):" Margin="0,10,0,0"/>
+                                <TextBox x:Name="TBSum" Height="35" VerticalContentAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Button x:Name="CreateApplicationButton" Content="Создать заявку" Height="45" FontSize="14" Margin="0,10,0,0" Click="CreateApplicationButton_Click"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Генерация отчета" FontSize="14"/>
+                    </StackPanel>
+                </TabItem.Header>
+
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="10">
+                        <TextBlock Text="Генерация отчета" FontSize="16" FontWeight="Bold" Foreground="#1A3A5C" HorizontalAlignment="Center" Margin="0,0,0,15"/>
+
+                        <Border Background="#F0F0F0" Padding="10" Margin="0,0,0,15">
+                            <StackPanel>
+                                <TextBlock Text="Параметры" FontWeight="Bold" Margin="0,0,0,10"/>
+
+                                <TextBlock Text="Тип отчета:" Margin="0,5,0,2"/>
+                                <ComboBox x:Name="CBReportType" Height="35" DisplayMemberPath="TypeName" SelectedValuePath="ReportTypeID" VerticalContentAlignment="Center"/>
+
+                                <TextBlock Text="Период:" Margin="0,10,0,5"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <DatePicker x:Name="DPFromDate" Width="190" Margin="0,0,5,0"/>
+                                    <TextBlock Text="—" VerticalAlignment="Center" Margin="5,0"/>
+                                    <DatePicker x:Name="DPToDate" Width="190" Margin="5,0,0,0"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Background="#E3F2FD" Padding="10" Margin="0,0,0,15">
+                            <StackPanel>
+                                <TextBlock Text="Выгрузка" FontWeight="Bold" Margin="0,0,0,10"/>
+
+                                <TextBlock Text="Формат отчета:" Margin="0,5,0,2"/>
+                                <ComboBox x:Name="CBReportFormat" Height="35" DisplayMemberPath="FormatName" SelectedValuePath="ReportFormatID" VerticalContentAlignment="Center"/>
+
+                                <CheckBox x:Name="CHKCancelledApplications"  Content="Учитывать аннулированные заявки" Margin="0,15,0,0"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Button x:Name="GenerateReportButton" Content="Сформировать отчет" Height="45" FontSize="14" Margin="0,10,0,0" Click="GenerateReportButton_Click"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Page>

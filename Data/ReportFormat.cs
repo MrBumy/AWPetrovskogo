@@ -12,26 +12,17 @@ namespace AWPetrovskogo.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class ReportFormat
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
+        public ReportFormat()
         {
             this.Reports = new HashSet<Report>();
         }
     
-        public int UserID { get; set; }
-        public string LastName { get; set; }
-        public string FirstName { get; set; }
-        public string Patronymic { get; set; }
-        public string EMail { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
-        public Nullable<int> RoleID { get; set; }
-        public int AmountOfMistakes { get; set; }
-        public bool IsBlocked { get; set; }
+        public int ReportFormatID { get; set; }
+        public string FormatName { get; set; }
     
-        public virtual Role Role { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Report> Reports { get; set; }
     }
