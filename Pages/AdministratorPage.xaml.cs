@@ -396,8 +396,7 @@ namespace AWPetrovskogo.Pages
                 // Проверка на количнство пользователей для выгрузки
                 if (users.Count == 0)
                 {
-                    MessageBox.Show("Нет пользователей для выгрузки!", "Внимание",
-                        MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Нет пользователей для выгрузки!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
 

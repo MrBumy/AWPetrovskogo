@@ -21,10 +21,8 @@ namespace AWPetrovskogo.Data
         public int ReportFormatID { get; set; }
         public bool IsCancelledApplications { get; set; }
         public System.DateTime CreatedDate { get; set; }
-        public int CreatedBy { get; set; }
     
         public virtual ReportFormat ReportFormat { get; set; }
-        public virtual User User { get; set; }
         public virtual ReportType ReportType { get; set; }
     }
 }

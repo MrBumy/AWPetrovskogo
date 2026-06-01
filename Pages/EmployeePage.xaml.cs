@@ -38,7 +38,6 @@ namespace AWPetrovskogo.Pages
         /// </summary>
         private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            // Получение текущего пользователя
             var currentUser = ConnectObject.GetConnect().Users.FirstOrDefault();
             if (currentUser != null)
             {
@@ -380,8 +379,35 @@ namespace AWPetrovskogo.Pages
                     return;
                 }
 
+                // Проверка на выбор дат
+                if (DPFromDate.SelectedDate == null || DPToDate.SelectedDate == null)
+                {
+                    MessageBox.Show("Выберите даты для отчета!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
                 // Получение состояния чекбокса про отклоненные заявки
                 bool includeCancelled = CHKCancelledApplications.IsChecked ?? false;
+
+                // Получение идентификаторов значений
+                int reportTypeId = (int)CBReportType.SelectedValue;
+                int reportFormatId = (int)CBReportFormat.SelectedValue;
+                DateTime fromDate = DPFromDate.SelectedDate.Value;
+                DateTime toDate = DPToDate.SelectedDate.Value;
+
+                // Создание записи в базе
+                var newReport = new Report
+                {
+                    ReportTypeID = reportTypeId,
+                    FromDate = fromDate,
+                    ToDate = toDate,
+                    ReportFormatID = reportFormatId,
+                    IsCancelledApplications = includeCancelled,
+                    CreatedDate = DateTime.Now
+                };
+
+                ConnectObject.GetConnect().Reports.Add(newReport);
+                ConnectObject.GetConnect().SaveChanges();
 
                 // Создание папки для отчетов
                 string reportsFolder = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Reports");

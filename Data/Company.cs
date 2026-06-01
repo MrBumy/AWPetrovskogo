@@ -18,7 +18,6 @@ namespace AWPetrovskogo.Data
         public Company()
         {
             this.Applications = new HashSet<Application>();
-            this.Customers = new HashSet<Customer>();
         }
     
         public int CompanyID { get; set; }
@@ -28,7 +27,5 @@ namespace AWPetrovskogo.Data
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Application> Applications { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Customer> Customers { get; set; }
     }
 }

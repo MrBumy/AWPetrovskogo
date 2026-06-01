@@ -271,7 +271,7 @@ namespace AWPetrovskogo.Pages
         private void LoadYears()
         {
             // Годы с 2026 по 2041
-            CBBudgetYear.ItemsSource = Enumerable.Range(2026, 16).ToList();
+            CBBudgetYear.ItemsSource = Enumerable.Range(2026, 1).ToList();
             // Текущий год по умолчанию
             CBBudgetYear.SelectedValue = DateTime.Now.Year;
         }
